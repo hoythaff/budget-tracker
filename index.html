@@ -133,7 +133,7 @@
   .form-input::placeholder { color: var(--text2); }
   select.form-input { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a8780'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
 
-  .cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 4px; }
+  .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 4px; }
   .cat-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: all 0.12s; }
   .cat-btn.selected { border-color: var(--accent); background: rgba(212,168,83,0.1); }
   .cat-btn .icon { font-size: 20px; }
@@ -257,11 +257,14 @@
 
 <script>
 const CATEGORIES = [
-  { id: 'bills', name: 'Bills', icon: '🧾', color: '#8b7fd4' },
-  { id: 'groceries', name: 'Groceries', icon: '🛒', color: '#5a9e6f' },
   { id: 'food', name: 'Food', icon: '🍔', color: '#d4a853' },
-  { id: 'fuel', name: 'Fuel', icon: '⛽', color: '#6b9bd2' },
-  { id: 'misc', name: 'Misc', icon: '📦', color: '#7a8a7a' },
+  { id: 'transport', name: 'Transport', icon: '🚗', color: '#6b9bd2' },
+  { id: 'housing', name: 'Housing', icon: '🏠', color: '#8b7fd4' },
+  { id: 'health', name: 'Health', icon: '💊', color: '#5a9e6f' },
+  { id: 'shopping', name: 'Shopping', icon: '🛍️', color: '#d46b8b' },
+  { id: 'utilities', name: 'Utils', icon: '⚡', color: '#d49a6b' },
+  { id: 'entertainment', name: 'Fun', icon: '🎬', color: '#9e6b5a' },
+  { id: 'other', name: 'Other', icon: '📦', color: '#7a8a7a' },
 ];
 
 let state = {
@@ -273,7 +276,7 @@ let state = {
 
 let editingExpenseId = null;
 let editingBudgetCatId = null;
-let selectedCat = 'bills';
+let selectedCat = 'food';
 
 function loadState() {
   const saved = localStorage.getItem('budgetTracker_v2');
@@ -497,7 +500,7 @@ function openAddModal() {
   document.getElementById('fAmount').value = '';
   document.getElementById('fDate').value = new Date().toISOString().split('T')[0];
   document.getElementById('deleteBtn').style.display = 'none';
-  buildCatGrid('bills');
+  buildCatGrid('food');
   openModal('expenseModal');
 }
 
